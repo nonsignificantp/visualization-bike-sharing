@@ -1,5 +1,5 @@
 class Bike {
-    constructor(comes, goes, code) {
+    constructor(comes, goes, duration, code) {
     // Exog variables
         [this.x1, this.y1] = this.getCoords(comes);
         [this.x2, this.y2] = this.getCoords(goes);
@@ -8,9 +8,8 @@ class Bike {
 
     // Endog variables
         // Behavior
-        this.color = {'r':76,'g':114,'b':176};
-        this.step = 1 / (Math.floor(Math.random() * (100 - 80)) + 80);
-        this.curve = 1//Math.random() * (2 - 0.5) + 0.5;
+        this.step = 1/Math.sqrt(duration**3); // Better between 0.01 and 0.008
+        this.curve = Math.random() * (2 - 0.4) + 0.4;
         // Movement & Distance
         this.pct = 0.0;
         this.distanceX = this.x2 - this.x1;
@@ -21,17 +20,12 @@ class Bike {
         strokeWeight(5);
         stroke(196,78,82);
         point(this.x, this.y, 10);
-        /* if (this.tipo == 'line') {
-            // Future warning! Lines do not update!
-            strokeWeight(3);
-            stroke(196,78,82);
-            line(this.x1, this.y1, this.x2, this.y2);
-        }  */
     }
 
     move() {
-        this.x = this.x1 + (this.pct * this.distanceX);
-        this.y = this.y1 + (Math.pow(this.pct, this.curve) * this.distanceY);
+        this.x = this.x1 + (this.transform(this.pct, 'x') * this.distanceX);
+        this.y = this.y1 + (this.transform(this.pct, 'y') * this.distanceY);
+
         this.pct += this.step;
 
         if (this.pct > 1.0) {
@@ -41,6 +35,17 @@ class Bike {
 
     getCoords(stationNumber) {
         return stationmanager.getCoords(stationNumber);
+    }
+
+    transform(z, ax) {
+        if (ax == 'y') {
+            let result = Math.sin(( 90 * z) * (Math.PI / 180));
+            return Math.pow(result, this.curve);
+        }
+        if (ax == 'x') {
+            let result = 1 - Math.cos(( 90 * z) * (Math.PI / 180));
+            return Math.pow(result, this.curve);
+        }
     }
 }
 

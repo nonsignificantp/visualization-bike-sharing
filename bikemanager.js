@@ -3,22 +3,16 @@ class BikeManager {
         this.queue = {};
     }
 
-    /* 
-    Data example
-    [{"type":"bike","hour":0,"comes":9,"goes":30,"data":1.00},
-     {"type":"line","hour":0,"comes":9,"goes":65,"data":0.67}
-    */
-
-    add(data, flowControl) {
-        data.forEach((trip) => {
-            if (trip['type'] == 'bike') {
-                let flow = Math.random();
-                if (trip['hour'] == this.hour & (trip['data'] * flowControl) > flow) {
-                    let bikecode = Math.random().toString(36).substring(2,12);
-                    this.queue[bikecode] = new Bike(trip['comes'], trip['goes'], bikecode)
-                }
-            }
-        });
+    add(data) {
+        if (Array.isArray(data)) {
+            data.forEach((bikeobj) => {
+                let bikecode = Math.random().toString(36).substring(2,12);
+                this.queue[bikecode] = new Bike(bikeobj['comes'], bikeobj['goes'], bikeobj['duration'],bikecode);
+            });
+        } else {
+            let bikecode = Math.random().toString(36).substring(2,12);
+            this.queue[bikecode] = new Bike(data['comes'], data['goes'], data['duration'], bikecode);
+        }
     }
 
     draw() {
