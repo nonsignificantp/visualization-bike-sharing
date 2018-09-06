@@ -1,6 +1,6 @@
 // Canvas related
-var screenWidth = window.innerWidth / 1.5;
-var screenHeight = screenWidth * 0.75324// window.innerHeight-10;
+var screenWidth = 1100; //window.innerWidth * 0.99
+var screenHeight = screenWidth * (620/1100)// window.innerHeight-10;
 
 // Load managers
 var stationmanager = new StationManager();
@@ -21,7 +21,7 @@ var sd_daily_bikes = 1755;
 function setup() {
     // Canvas related
     frameRate(30);
-    bg = loadImage("assets/map.png");
+    bg = loadImage("assets/map5.png");
     createCanvas(screenWidth, screenHeight);
     generate_probabilistic_model();
     
@@ -47,19 +47,20 @@ function draw() {
     
 
     frame++;
-    /*
+    
     // Hour of the day related
     let hour = Math.floor(frame/150);
-    // let flow = Math.random();
-    bikemanager.setHour(hour);
-
-    // Bike creation
-    let instantFrame = frame%150;
-    let instantRate = rate[hour] * (1 - logit(instantFrame, 40));
-    bikemanager.add(bikes, instantRate);
+    
+    fill(255,255,255);
+    stroke(255,255,255);
+    strokeWeight(0);
+    	
+    triangle(1065, 121, 1075, 126, 1065, 131);
+    triangle(1065, 466, 1075, 471, 1065, 476);
+    text(`Active bikes ${Object.keys(bikemanager.queue).length}`, 920, 20);
+    text('00\n01\n02\n03\n04\n05\n06\n07\n08\n09\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23', 1080, 130);
 
     // Related to frame continuity
-    */
     if (frame > 3600) {
         frame = 0;
     }

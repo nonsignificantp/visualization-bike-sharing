@@ -5,7 +5,9 @@ class Station {
         this.size = 5;
     }
 
-    draw(color = {'r':76,'g':114,'b':176}) {
+    // 76,114,176
+
+    draw(color = {'r':33,'g':104,'b':245}) {
         strokeWeight(this.size); 
         stroke(color['r'],color['g'],color['b']);
         point(this.x, this.y, 1);

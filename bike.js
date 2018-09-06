@@ -8,7 +8,7 @@ class Bike {
 
     // Endog variables
         // Behavior
-        this.step = 1/Math.sqrt(duration**3); // Better between 0.01 and 0.008
+        this.step = 1/((150/60)*duration); // Better between 0.01 and 0.008
         this.curve = Math.random() * (2 - 0.4) + 0.4;
         // Movement & Distance
         this.pct = 0.0;
@@ -18,7 +18,7 @@ class Bike {
 
     draw() {
         strokeWeight(5);
-        stroke(196,78,82);
+        stroke(243,12,82); //196,78,82
         point(this.x, this.y, 10);
     }
 

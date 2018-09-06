@@ -29,10 +29,10 @@ class StationManager {
         var top = -58.4550621944;// - 0.005; // Original: -58.4550621944
         var bot = -58.3562574145;// + 0.005; // Original: -58.3562574145*/
 
-        var lft = -58.466442;
-        var rgt = -58.334627;
-        var top = -34.561899;
-        var bot = -34.643319;
+        var top = -34.565030; var lft = -58.493404;
+        var bot = -34.643467; var rgt = -58.325200;
+        
+        
         
         data.forEach((station) => {
             // Define station variables

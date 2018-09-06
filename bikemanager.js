@@ -28,8 +28,8 @@ class BikeManager {
     }
 
     takeOutTrash(bikecode, stationNumber) {
-        stationmanager.updateSize(stationNumber, 5);
-        stationmanager.updateColor(stationNumber, {'r':221,'g':132,'b':82});
+        stationmanager.updateSize(stationNumber, 8);
+        stationmanager.updateColor(stationNumber, {'r':242,'g':145,'b':90}); // 221,132,82
         delete this.queue[bikecode];
         
     }
