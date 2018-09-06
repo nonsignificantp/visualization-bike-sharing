@@ -45,25 +45,29 @@ function draw() {
     // Related to movement
     bikemanager.update();
     
-
-    frame++;
-    
     // Hour of the day related
     let hour = Math.floor(frame/150);
+    let minute = Math.floor(60*((frame%150)/150));
     
-    fill(255,255,255);
-    stroke(255,255,255);
+    
     strokeWeight(0);
-    	
-    triangle(1065, 121, 1075, 126, 1065, 131);
-    triangle(1065, 466, 1075, 471, 1065, 476);
-    text(`Active bikes ${Object.keys(bikemanager.queue).length}`, 920, 20);
-    text('00\n01\n02\n03\n04\n05\n06\n07\n08\n09\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23', 1080, 130);
+    fill(255,255,255);
+    rect(890, 10, 200, 60, 12, 3, 12, 12);
+    fill(0,0,0);
+    textSize(48);
+    textFont('Share Tech Mono');
+    text(`${('0' + hour).slice(-2)}:${('0' + minute).slice(-2)}`, 925, 57);
+    fill(255,255,255);
+    textSize(16);
+    text(`Active bikes ${Object.keys(bikemanager.queue).length}`, 920, 90);
+ 
 
     // Related to frame continuity
     if (frame > 3600) {
         frame = 0;
     }
+
+    frame++;
 };
 
 function logit(x, turnpoint) {
