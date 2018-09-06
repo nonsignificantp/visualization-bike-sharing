@@ -1,19 +1,20 @@
 class Station {
-    constructor(x, y) {
+    constructor(x, y, s) {
         this.x = x;
         this.y = y;
-        this.size = 5;
+        this.min_size = s;
+        this.size = s;
     }
 
     // 76,114,176
 
-    draw(color = {'r':33,'g':104,'b':245}) {
+    draw(color = '#000000') { //#2168f5
         strokeWeight(this.size); 
-        stroke(color['r'],color['g'],color['b']);
+        stroke(color);
         point(this.x, this.y, 1);
 
-        if (this.size > 5) {
-            this.size -= this.size * 0.1;
+        if (this.size > this.min_size) {
+            this.size -= this.size * 0.05;
         }
     }
 

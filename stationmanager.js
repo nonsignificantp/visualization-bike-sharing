@@ -1,5 +1,6 @@
 class StationManager {
     constructor() {
+        this.station_of_interest = [9,14,167,30,29,56,159,65,17,70,59,193,5,76,85,122,43,96,113,13,163,140,73,68,82,104,143,183,121,131,189,28,170,199,2,134,144,106,148,130,147,6,33,111,32,4,114,3,23,26,11,60,40,164,36,1,44,18,161,165];
         this.queue = {};
     }
 
@@ -14,7 +15,7 @@ class StationManager {
         let reference = this.queue[stationNumber].size
         reference += size
         // Size never drops below 0
-        if (reference > 0) {
+        if (reference > 0 & reference < 35) {
             this.queue[stationNumber].size = reference;
         }
     }
@@ -24,23 +25,16 @@ class StationManager {
     }
 
     init(data) {
-        /*var lft = -34.5680738914; // Original: -34.5680738914
-        var rgt = -34.6417279105;// - 0.003; // Original: -34.6417279105
-        var top = -58.4550621944;// - 0.005; // Original: -58.4550621944
-        var bot = -58.3562574145;// + 0.005; // Original: -58.3562574145*/
-
         var top = -34.565030; var lft = -58.493404;
         var bot = -34.643467; var rgt = -58.325200;
-        
-        
-        
+                
         data.forEach((station) => {
             // Define station variables
             let x = Math.floor(((lft - station['longitude']) * screenWidth) / (lft - rgt));
             let y = Math.floor(((top - station['latitude']) * screenHeight) / (top - bot));            
-
+            let s = (this.station_of_interest.includes(station['id'])) ? 6 : 2;
             // Create station instance
-            this.queue[station['id']] = new Station(x, y)
+            this.queue[station['id']] = new Station(x, y, s);
 
         });
 
@@ -51,11 +45,3 @@ class StationManager {
     }
 
 }
-
-/*
-Data object example
-data = [
-        {"id":144,"latitude":-34.6339776264,"longitude":-58.4009623109},
-        {"id":50,"latitude":-34.6016384998,"longitude":-58.3711554749}
-       ]
-*/

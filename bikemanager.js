@@ -4,15 +4,10 @@ class BikeManager {
     }
 
     add(data) {
-        if (Array.isArray(data)) {
-            data.forEach((bikeobj) => {
-                let bikecode = Math.random().toString(36).substring(2,12);
-                this.queue[bikecode] = new Bike(bikeobj['comes'], bikeobj['goes'], bikeobj['duration'],bikecode);
-            });
-        } else {
+        data.forEach((bikeobj) => {
             let bikecode = Math.random().toString(36).substring(2,12);
-            this.queue[bikecode] = new Bike(data['comes'], data['goes'], data['duration'], bikecode);
-        }
+            this.queue[bikecode] = new Bike(bikeobj['comes'], bikeobj['goes'], bikeobj['duration'],bikecode);
+        });
     }
 
     draw() {
@@ -28,8 +23,8 @@ class BikeManager {
     }
 
     takeOutTrash(bikecode, stationNumber) {
-        stationmanager.updateSize(stationNumber, 8);
-        stationmanager.updateColor(stationNumber, {'r':242,'g':145,'b':90}); // 221,132,82
+        stationmanager.updateSize(stationNumber, 5);
+        stationmanager.updateColor(stationNumber, '#ad588c'); // 221,132,82 
         delete this.queue[bikecode];
         
     }

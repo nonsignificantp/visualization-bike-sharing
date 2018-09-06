@@ -11,14 +11,15 @@ function generate_probabilistic_model() {
     for (let hour = 0; hour < 24; hour++) {
         for (let count = 0; count < hourly_total[hour]; count++) {
             let pick = Math.random();
-                comesData[hour].forEach((data) => {
+                for (let stations_count = 0; stations_count < comesData[hour].length; stations_count++) {
+                    let data = comesData[hour][stations_count]
                     if (pick < data['selector']) {
                         let comes = data['station'];
-                        let [goes, mu, sd] = getgo(hour, comes);
-                        let duration = normal(mu, sd);
+                        let [goes, duration] = getgo(hour, comes);
                         createEntry(hour, comes, goes, duration);
+                        break;
                     }
-                });
+                }
         }
     }
 }
@@ -42,7 +43,8 @@ function getgo(hour, stationNumber) {
     
     for (let op = 0; 0 < options.length; op++) {
         if (pick < options[op]['selector']) {
-            return [options[op]['station'], options[op]['duration_mean'], options[op]['duration_sd']];
+            let duration = normal(options[op]['duration_mean'], options[op]['duration_sd'])
+            return [options[op]['station'], duration];
         }
     }
     
@@ -53,6 +55,13 @@ function createEntry(h, c, g, d) {
     let max = min + 150;
     let frame = Math.floor(Math.random() * (max - min)) + min;
     
+    if (frame in frameBook) {
+        frameBook[frame].push({'comes':c, 'goes':g, 'duration':d});
+    } else {
+        frameBook[frame] = [{'comes':c, 'goes':g, 'duration':d}];
+    }
+    
+    /*
     if (frame in frameBook) {
         if (frameBook[frame] instanceof Object) {
             if (Array.isArray(frameBook[frame])) {
@@ -67,5 +76,5 @@ function createEntry(h, c, g, d) {
         
     } else {
         frameBook[frame] = {'comes':c, 'goes':g, 'duration':d};
-    }
+    }*/
 }
