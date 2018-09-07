@@ -11,7 +11,7 @@ var start = 14; // Select an hour of the day where start the animation
 var frame = 0 + (start * 150);
 
 // Engine related
-var boost = 1;
+var boost = 2;
 var mu_daily_bikes = 5090 * boost;
 var sd_daily_bikes = 1755;
 var total_for_day = Math.floor(normal(mu_daily_bikes, sd_daily_bikes));
@@ -55,10 +55,11 @@ function draw() {
     textSize(48);
     textFont('Share Tech Mono');
     text(`${('0' + hour).slice(-2)}:${('0' + minute).slice(-2)}`, 925, 57);
+    
     fill(255,255,255);
     textSize(16);
-    text(`Total  ${total_for_day}`, 920, 90);
-    text(`Active bikes ${Object.keys(bikemanager.queue).length}`, 920, 110);
+    text(`Total  ${Math.floor(total_for_day / boost)}`, 920, 90);
+    text(`Active bikes ${Math.floor(Object.keys(bikemanager.queue).length / boost)}`, 920, 110);
  
 
     // Related to frame continuity

@@ -23,7 +23,8 @@ class BikeManager {
     }
 
     takeOutTrash(bikecode, stationNumber) {
-        stationmanager.updateSize(stationNumber, 10);
+        let newSize = Math.floor(5 + (5 * (1/boost)))
+        stationmanager.updateSize(stationNumber, newSize);
         stationmanager.updateColor(stationNumber, '#ad588c'); // 221,132,82 
         delete this.queue[bikecode];
         

@@ -14,7 +14,7 @@ class Station {
         point(this.x, this.y, 1);
 
         if (this.size > this.min_size) {
-            this.size -= this.size * 0.03;
+            this.size -= this.size * (0.03 * boost);
         }
     }
 
