@@ -2,8 +2,8 @@ var hourly_rates = [0.0149,0.0094,0.0048,0.0027,0.0025,0.0052,0.0117,0.0345,0.05
 var hourly_total = [];
 var frameBook = {};
 
-function generate_probabilistic_model() {
-    let total_day = Math.floor(normal(mu_daily_bikes, sd_daily_bikes));
+function generate_probabilistic_model(total_day) {
+    
     hourly_rates.forEach((rate) => {
         hourly_total.push(total_day * rate);
     });

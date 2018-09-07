@@ -7,20 +7,21 @@ var stationmanager = new StationManager();
 var bikemanager = new BikeManager();
 
 // Time continuity related
-var start = 3; // Select an hour of the day where start the animation
+var start = 14; // Select an hour of the day where start the animation
 var frame = 0 + (start * 150);
 
 // Engine related
-var boost = 2;
+var boost = 1;
 var mu_daily_bikes = 5090 * boost;
 var sd_daily_bikes = 1755;
+var total_for_day = Math.floor(normal(mu_daily_bikes, sd_daily_bikes));
 
 function setup() {
     // Canvas related
     frameRate(30);
     bg = loadImage("assets/map.png");
     createCanvas(screenWidth, screenHeight);
-    generate_probabilistic_model();
+    generate_probabilistic_model(total_for_day);
     
     // Data related
     stationmanager.init(stations);
@@ -56,7 +57,8 @@ function draw() {
     text(`${('0' + hour).slice(-2)}:${('0' + minute).slice(-2)}`, 925, 57);
     fill(255,255,255);
     textSize(16);
-    text(`Active bikes ${Object.keys(bikemanager.queue).length}`, 920, 90);
+    text(`Total  ${total_for_day}`, 920, 90);
+    text(`Active bikes ${Object.keys(bikemanager.queue).length}`, 920, 110);
  
 
     // Related to frame continuity
