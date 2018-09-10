@@ -1,6 +1,6 @@
 class BikeManager {
     constructor() {
-        this.queue = {};
+        this.queue = {}; // Saves all bike objects
     }
 
     add(data) {
@@ -23,14 +23,16 @@ class BikeManager {
     }
 
     takeOutTrash(bikecode, stationNumber) {
+
+        /* Each time a bike arrives to a docking station, the bikes gets eliminated from the object's pool */
+
+        // Tell the station that a bike has arrive
         let newSize = Math.floor(5 + (5 * (1/boost)))
         stationmanager.updateSize(stationNumber, newSize);
-        stationmanager.updateColor(stationNumber, '#ad588c'); // 221,132,82 
+        stationmanager.updateColor(stationNumber, bikeArrivesColor); //ad588c
+
+        // Deletes the bike
         delete this.queue[bikecode];
-        
     }
 
-    setHour(hour) {
-        this.hour = hour;
-    }
 }
