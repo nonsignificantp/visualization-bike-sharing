@@ -1,12 +1,10 @@
-🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲🚲 
-
 # Buenos Aires' Bikesharing system daily use
 
-*by* Agustin Rodriguez
+*by* Agustin Rodriguez (who believes all bicycles are created equal)
 
 ### Summary
 
-An animation powered by P5js that ilustrates flowS between docking stations on an average weekday in *EcoBici*, Buenos Aires own bikesharing system.
+An animation powered by P5js that ilustrates flows between docking stations on an average weekday in *EcoBici*, Buenos Aires own bikesharing system.
 
 ![img](assets/readme-banner.png)
 
