@@ -30,7 +30,8 @@ class BikeManager {
         let newSize = Math.floor(5 + (5 * (1/boost)))
         stationmanager.updateSize(stationNumber, newSize);
         stationmanager.updateColor(stationNumber, bikeArrivesColor); //ad588c
-
+        trailmanager.dotTerminated(bikecode);
+        
         // Deletes the bike
         delete this.queue[bikecode];
     }

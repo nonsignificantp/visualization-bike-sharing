@@ -60,21 +60,4 @@ function createEntry(h, c, g, d) {
     } else {
         frameBook[frame] = [{'comes':c, 'goes':g, 'duration':d}];
     }
-    
-    /*
-    if (frame in frameBook) {
-        if (frameBook[frame] instanceof Object) {
-            if (Array.isArray(frameBook[frame])) {
-                frameBook[frame].push({'comes':c, 'goes':g, 'duration':d});
-            } else {
-                let newframe = [];
-                newframe.push(frameBook[frame]);
-                newframe.push({'comes':c, 'goes':g, 'duration':d});
-                frameBook[frame] = newframe;
-            }
-        }
-        
-    } else {
-        frameBook[frame] = {'comes':c, 'goes':g, 'duration':d};
-    }*/
 }

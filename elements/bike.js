@@ -21,7 +21,7 @@ class Bike {
 
     // Endog variables
         // Color
-        this.color = (this.trip == 'circle') ? loop_trip : (downtown.includes(goes)) ? '#2168f5' : '#ea0c52';
+        this.color = (this.trip == 'circle') ? loop_trip : (downtown.includes(goes)) ? downtown_trip : common_trip;
         // Behavior
         this.curve = Math.random() * (2 - 0.4) + 0.4;
         this.step = 1/((150/60)*duration);
@@ -29,6 +29,8 @@ class Bike {
         this.distanceX = this.x2 - this.x1;
         this.distanceY = this.y2 - this.y1;
         this.pct = 0.0;
+
+        this.history = [];
     }
 
     draw() {
@@ -48,17 +50,18 @@ class Bike {
             this.x = this.x1 + (this.pathTransform(this.pct, 'x') * this.distanceX);
             this.y = this.y1 + (this.pathTransform(this.pct, 'y') * this.distanceY);
             this.pct += this.step;
-        }
-
-        if (this.trip == 'circle') {
+        } else if (this.trip == 'circle') {
             this.x = this.x1 + this.circleTransform(this.pct, 'x');
             this.y = this.y1 + this.circleTransform(this.pct, 'y');
             this.pct += this.step;
         }
 
-        if (this.pct > 1.0) {
+        trailmanager.add(this.code, {'x':this.x, 'y':this.y, 'c':color(this.color), 'f':0});
+
+        if (this.pct >= 1.0) {
             bikemanager.takeOutTrash(this.code, this.end);
         }
+        
     }
 
     getCoords(stationNumber) {
@@ -75,8 +78,7 @@ class Bike {
         if (ax == 'y') {
             let result = Math.sin(( 90 * z) * (Math.PI / 180));
             return Math.pow(result, this.curve);
-        }
-        if (ax == 'x') {
+        } else  if (ax == 'x') {
             let result = 1 - Math.cos(( 90 * z) * (Math.PI / 180));
             return Math.pow(result, this.curve);
         }
@@ -89,8 +91,7 @@ class Bike {
         if (ax == 'y') {
             let result = 20*Math.sin(( (360 * z) - 90) * (Math.PI / 180));
             return result;
-        }
-        if (ax == 'x') {
+        } else if (ax == 'x') {
             let result = 20*Math.cos(( (360 * z) - 90) * (Math.PI / 180));
             return result;
         }
