@@ -4,7 +4,7 @@
 
 ### Summary
 
-An animation powered by P5js that ilustrates flows between docking stations on an average weekday in *EcoBici*, Buenos Aires own bikesharing system.
+An animation powered by P5js that ilustrates flows between docking stations on an average weekday in *EcoBici*, Buenos Aires own bikesharing system. A video of the end product can be seen [on youtube](https://www.youtube.com/watch?v=6OvpU7OM58A).
 
 ![img](assets/readme-banner.png)
 
